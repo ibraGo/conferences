@@ -14,9 +14,3 @@
 # Maven
 log/
 target/
-
-#configuration
-src/main/resources/application.properties
-
-#hosting
-Procfile

@@ -30,8 +30,9 @@
 		<!-- templates to be automatically updated when modified. -->
 		<property name="cacheable" value="false" />
 	</bean>
-	
-	<bean id="groupingStrategy" class="nz.net.ultraq.thymeleaf.decorators.strategies.GroupingStrategy"/>
+
+	<bean id="groupingStrategy"
+		class="nz.net.ultraq.thymeleaf.decorators.strategies.GroupingStrategy" />
 
 	<!-- SpringTemplateEngine automatically applies SpringStandardDialect and -->
 	<!-- enables Spring's own MessageSource message resolution mechanisms. -->
@@ -39,6 +40,8 @@
 		class="org.thymeleaf.spring4.SpringTemplateEngine">
 		<property name="additionalDialects">
 			<set>
+				<bean
+					class="org.thymeleaf.extras.springsecurity4.dialect.SpringSecurityDialect" />
 				<bean class="nz.net.ultraq.thymeleaf.LayoutDialect">
 					<constructor-arg ref="groupingStrategy" />
 				</bean>
