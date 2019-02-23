@@ -4,58 +4,38 @@
 	layout:decorate="~{layout}">
 <head>
 <title>Conferences - Welcome</title>
+<link
+	th:href="@{/resources/css/timeline.css}"
+	rel="stylesheet" type="text/css" />
 </head>
 <body>
 	<div layout:fragment="content">
 
-<!-- 		<div class="col-lg-12" th:if="${not #lists.isEmpty(programSections)}"> -->
-<!-- 			<!--Begin::Portlet--> -->
-<!-- 			<div class="m-portlet  m-portlet--full-height "> -->
-<!-- 				<div class="m-portlet__head"> -->
-<!-- 					<div class="m-portlet__head-caption"> -->
-<!-- 						<div class="m-portlet__head-title"> -->
-<!-- 							<h3 class="m-portlet__head-text" th:text="${conference.name}">Recent -->
-<!-- 								Activities</h3> -->
-<!-- 						</div> -->
-<!-- 					</div> -->
-<!-- 					<div class="m-portlet__head-tools"></div> -->
-<!-- 				</div> -->
-<!-- 				<div class="m-portlet__body"> -->
-<!-- 					<div class="m-scrollable mCustomScrollbar _mCS_5 mCS-autoHide" -->
-<!-- 						data-scrollbar-shown="true" data-scrollable="true" -->
-<!-- 						data-max-height="380" -->
-<!-- 						style="overflow: visible; height: 380px; max-height: 380px; position: relative;"> -->
-<!-- 						Begin::Timeline 2 -->
-<!-- 						<div class="m-timeline-2"> -->
-<!-- 							<div -->
-<!-- 								class="m-timeline-2__items  m--padding-top-25 m--padding-bottom-30"> -->
-<!-- 								<div class="m-timeline-2__item" -->
-<!-- 									th:each="program : ${programSections}"> -->
-<!-- 									<span class="m-timeline-2__item-time" -->
-<!-- 										th:text="'From ' + program.startDate + ' To ' + program.endDate"> -->
-<!-- 										10:00 </span> -->
-<!-- 									<div class="m-timeline-2__item-cricle"> -->
-<!-- 										<i class="fa fa-genderless m--font-danger"></i> -->
-<!-- 									</div> -->
-<!-- 									<div class="m-timeline-2__item-text  m--padding-top-5" th:text="${program.description}"> -->
-<!-- 										Lorem ipsum dolor sit amit,consectetur eiusmdd tempor <br> -->
-<!-- 										incididunt ut labore et dolore magna -->
-<!-- 									</div> -->
-<!-- 								</div> -->
+		<div class="container">
+			<h1 class="project-name"><span th:text="${conference.name}"></span> scheduler</h1>
+			<div id="timeline" th:if="${not #lists.isEmpty(programSections)}">
 
-<!-- 							</div> -->
-<!-- 						</div> -->
-<!-- 						End::Timeline 2 -->
-<!-- 					</div> -->
-<!-- 				</div> -->
-<!-- 			</div> -->
-<!-- 			<!--End::Portlet--> -->
-<!-- 		</div> -->
+				<div class="timeline-item" th:each="program,iter : ${programSections}">
+					<div class="timeline-icon">
+						<i class="i-timeline-icon flaticon-network"></i>
+					</div>
+					<div th:class="${iter.index%2 == 0 ? 'timeline-content' : 'timeline-content right'}">
+						<h2 th:text="${program.label}">LOREM IPSUM DOLOR</h2>
+						<p th:text="${program.description}">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+							Atque, facilis quo. Maiores magnam modi ab libero praesentium
+							blanditiis consequatur aspernatur accusantium maxime molestiae
+							sunt ipsa.</p>
+						<div class="timeline-footer">
+			                <p class="text-right" th:text="${'From ' + program.startDate + ' To ' + program.endDate}">Feb-23-2014</p>
+			            </div>
+					</div>
+				</div>
+			</div>
+		</div>
 
-<!-- 		<div th:if="${#lists.isEmpty(conferences)}" class="col-lg-12"> -->
-<!-- 			<div class="alert alert-warning" role="alert">No conference -->
-<!-- 				found</div> -->
-<!-- 		</div> -->
+		<div th:if="${#lists.isEmpty(programSections)}" class="col-lg-12">
+			<div class="alert alert-warning" role="alert">scheduler not setted yet</div>
+		</div>
 
 	</div>
 </body>
