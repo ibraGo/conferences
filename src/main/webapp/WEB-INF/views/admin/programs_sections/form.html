@@ -18,12 +18,14 @@
 				<label class="col-sm-2 control-label">label:</label>
 				<div class="col-sm-10">
 					<input type="text" class="form-control" th:field="*{label}" />
+					<p th:if="${#fields.hasErrors('label')}" class="label label-danger" th:errors="*{label}">Label Error</p>
 				</div>
 			</div>
 			<div class="form-group">
 				<label class="col-sm-2 control-label">description:</label>
 				<div class="col-sm-10">
 					<input type="text" class="form-control" th:field="*{description}" />
+					<p th:if="${#fields.hasErrors('description')}" class="label label-danger" th:errors="*{description}">Description Error</p>
 				</div>
 			</div>
 			<div class="form-group">
@@ -31,6 +33,7 @@
 				<div class="col-sm-10">
 					<input type="text" class="form-control datetime-field"
 						th:field="*{startDate}" />
+					<p th:if="${#fields.hasErrors('startDate')}" class="label label-danger" th:errors="*{startDate}">StartDate Error</p>
 				</div>
 			</div>
 			<div class="form-group">
@@ -38,6 +41,7 @@
 				<div class="col-sm-10">
 					<input type="text" class="form-control datetime-field"
 						th:field="*{endDate}" />
+					<p th:if="${#fields.hasErrors('endDate')}" class="label label-danger" th:errors="*{endDate}">EndDate Error</p>
 				</div>
 			</div>
 
@@ -49,6 +53,7 @@
 						<option th:each="conference : ${conferences}"
 							th:value="${conference.id}" th:utext="${conference.name}"></option>
 					</select>
+					<p th:if="${#fields.hasErrors('conference')}" class="label label-danger" th:errors="*{conference}">Conference Error</p>
 				</div>
 			</div>
 
@@ -60,6 +65,8 @@
 						<option th:each="presentation : ${presentations}"
 							th:value="${presentation.id}" th:utext="${presentation.title}"></option>
 					</select>
+
+					<p th:if="${#fields.hasErrors('presentation')}" class="label label-danger" th:errors="*{presentation}">Presentation Error</p>
 				</div>
 			</div>
 

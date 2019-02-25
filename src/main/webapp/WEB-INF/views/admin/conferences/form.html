@@ -18,12 +18,14 @@
 				<label class="col-sm-2 control-label">Name:</label>
 				<div class="col-sm-10">
 					<input type="text" class="form-control" th:field="*{name}" />
+					<p th:if="${#fields.hasErrors('name')}" class="label label-danger" th:errors="*{name}">Name Error</p>
 				</div>
 			</div>
 			<div class="form-group">
 				<label class="col-sm-2 control-label">durationDays:</label>
 				<div class="col-sm-10">
 					<input type="text" class="form-control" th:field="*{durationDays}" />
+					<p th:if="${#fields.hasErrors('durationDays')}" class="label label-danger" th:errors="*{durationDays}">Name Error</p>
 				</div>
 			</div>
 			<div class="form-group">
@@ -31,6 +33,7 @@
 				<div class="col-sm-10">
 					<input type="text" class="form-control data-field"
 						th:field="*{startDate}" />
+					<p th:if="${#fields.hasErrors('startDate')}" class="label label-danger" th:errors="*{startDate}">Name Error</p>
 				</div>
 			</div>
 			<div class="form-group">
@@ -38,6 +41,7 @@
 				<div class="col-sm-10">
 					<input type="text" class="form-control data-field"
 						th:field="*{startSubmission}" />
+					<p th:if="${#fields.hasErrors('startSubmission')}" class="label label-danger" th:errors="*{startSubmission}">Name Error</p>
 				</div>
 			</div>
 			<div class="form-group">
@@ -45,6 +49,7 @@
 				<div class="col-sm-10">
 					<input type="text" class="form-control data-field"
 						th:field="*{endSubmission}" />
+					<p th:if="${#fields.hasErrors('endSubmission')}" class="label label-danger" th:errors="*{endSubmission}">Name Error</p>
 				</div>
 			</div>
 			<div class="form-group">

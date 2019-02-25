@@ -10,7 +10,6 @@ public class AdminController {
 
 	@RequestMapping(value = { "/admin", "/admin/dashboard" }, method = RequestMethod.GET)
 	public String conferences(Model model) {
-
 		return "admin/index.html";
 	}
 

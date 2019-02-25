@@ -18,6 +18,7 @@
 				<label class="col-sm-2 control-label">Title:</label>
 				<div class="col-sm-10">
 					<input type="text" class="form-control" th:field="*{title}" />
+					<p th:if="${#fields.hasErrors('title')}" class="label label-danger" th:errors="*{title}">Title Error</p>
 				</div>
 			</div>
 
@@ -29,6 +30,7 @@
 						<option th:each="speaker : ${speakers}" th:value="${speaker.id}"
 							th:utext="${speaker.username}"></option>
 					</select>
+					<p th:if="${#fields.hasErrors('speaker')}" class="label label-danger" th:errors="*{speaker}">Speaker Error</p>
 				</div>
 			</div>
 

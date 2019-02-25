@@ -2,9 +2,11 @@ package com.bimmh.conferences.web;
 
 import java.util.Date;
 
+import com.bimmh.conferences.validator.ProgramSectionValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Validator;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.bimmh.conferences.model.ProgramSection;
@@ -14,6 +16,9 @@ import com.bimmh.conferences.repository.PresentationRepository;
 @Controller
 @RequestMapping(path = "/admin/programs_sections")
 public class ProgramSectionController extends AbstractCRUDController<ProgramSection, Long> {
+
+	@Autowired
+	ProgramSectionValidator programSectionValidator;
 
 	@Autowired
 	private ConferenceRepository conferenceRepository;
@@ -35,6 +40,16 @@ public class ProgramSectionController extends AbstractCRUDController<ProgramSect
 	@Override
 	public String modelId() {
 		return "programs_section";
+	}
+
+	@Override
+	public Validator getValidator() {
+		return programSectionValidator;
+	}
+
+	@Override
+	public String getPath() {
+		return "admin/programs_sections";
 	}
 
 }
