@@ -1,15 +1,13 @@
 package com.bimmh.conferences.model;
 
-import java.sql.Date;
-import java.util.Set;
+import org.springframework.format.annotation.DateTimeFormat;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import java.util.Date;
+import java.text.DateFormat;
+import java.util.Set;
+import java.util.regex.Pattern;
+
+import javax.persistence.*;
 
 @Entity
 @Table(name = "conferences")
@@ -20,8 +18,11 @@ public class Conference {
 	private Long id;
 	private String name;
 	private Integer durationDays;
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date startDate;
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date startSubmission;
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date endSubmission;
 
 	@OneToMany(mappedBy = "conference")

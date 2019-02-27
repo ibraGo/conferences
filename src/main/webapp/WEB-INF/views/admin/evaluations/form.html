@@ -23,6 +23,7 @@
 						<option th:each="user : ${users}" th:value="${user.id}"
 							th:utext="${user.username}"></option>
 					</select>
+					<p th:if="${#fields.hasErrors('judge')}" class="label label-danger" th:errors="*{judge}">Judge Error</p>
 				</div>
 			</div>
 
@@ -34,6 +35,7 @@
 						<option th:each="presentation : ${presentations}"
 							th:value="${presentation.id}" th:utext="${presentation.title}"></option>
 					</select>
+					<p th:if="${#fields.hasErrors('presentation')}" class="label label-danger" th:errors="*{presentation}">Presentation Error</p>
 				</div>
 			</div>
 

@@ -2,9 +2,11 @@ package com.bimmh.conferences.web;
 
 import java.util.Date;
 
+import com.bimmh.conferences.validator.EvaluationValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Validator;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.bimmh.conferences.model.Evaluation;
@@ -17,6 +19,9 @@ public class EvaluationController extends AbstractCRUDController<Evaluation, Lon
 
 	@Autowired
 	private PresentationRepository presentationRepository;
+
+	@Autowired
+	private EvaluationValidator evaluationValidator;
 
 	@Autowired
 	private UserRepository userRepository;
@@ -36,6 +41,16 @@ public class EvaluationController extends AbstractCRUDController<Evaluation, Lon
 	@Override
 	public String modelId() {
 		return "evaluation";
+	}
+
+	@Override
+	public Validator getValidator() {
+		return evaluationValidator;
+	}
+
+	@Override
+	public String getPath() {
+		return "admin/evaluations";
 	}
 
 }
