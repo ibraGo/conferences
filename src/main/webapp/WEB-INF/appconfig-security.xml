@@ -8,6 +8,7 @@
 		http://www.springframework.org/schema/security/spring-security.xsd">
 
     <http use-expressions="true">
+        <csrf disabled="true"/>
         <intercept-url pattern="/admin/**" access="hasRole('ROLE_ADMIN')"/>
         <form-login login-page="/login" default-target-url="/authcomplete" authentication-failure-url="/login?error" username-parameter="username" password-parameter="password"/>
         <logout logout-success-url="/login?logout" />

@@ -1,6 +1,7 @@
 package com.bimmh.conferences.model;
 
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.Date;
 import java.text.DateFormat;
@@ -14,7 +15,7 @@ import javax.persistence.*;
 public class Conference {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.SEQUENCE)
 	private Long id;
 	private String name;
 	private Integer durationDays;
@@ -24,9 +25,18 @@ public class Conference {
 	private Date startSubmission;
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date endSubmission;
+	private  String fileName;
 
 	@OneToMany(mappedBy = "conference")
 	private Set<ProgramSection> programSections;
+
+	public String getFileName() {
+		return fileName;
+	}
+
+	public void setFileName(String file) {
+		this.fileName = file;
+	}
 
 	@OneToMany(mappedBy = "conference")
 	private Set<Service> Service;
