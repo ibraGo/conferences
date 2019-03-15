@@ -1,5 +1,5 @@
 
-package com.journaldev.spring.controller;
+package com.bimmh.conferences.web;
 
 import java.io.BufferedOutputStream;
 import java.io.File;
