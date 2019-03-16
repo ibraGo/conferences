@@ -1,21 +1,24 @@
 package com.bimmh.conferences.model;
 
-import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.web.multipart.MultipartFile;
-
 import java.util.Date;
-import java.text.DateFormat;
 import java.util.Set;
-import java.util.regex.Pattern;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Table(name = "conferences")
 public class Conference {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.SEQUENCE)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private Long id;
 	private String name;
 	private Integer durationDays;
@@ -25,10 +28,22 @@ public class Conference {
 	private Date startSubmission;
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date endSubmission;
-	private  String fileName;
+	private String fileName;
 
 	@OneToMany(mappedBy = "conference")
 	private Set<ProgramSection> programSections;
+
+	@OneToMany(mappedBy = "conference")
+	private Set<Article> articles;
+
+	@OneToMany(mappedBy = "conference")
+	private Set<Service> services;
+
+	@ManyToMany
+	private Set<User> participants;
+
+	// private String docType;
+	// private String notes;
 
 	public String getFileName() {
 		return fileName;
@@ -37,15 +52,6 @@ public class Conference {
 	public void setFileName(String file) {
 		this.fileName = file;
 	}
-
-	@OneToMany(mappedBy = "conference")
-	private Set<Service> Service;
-
-	@ManyToMany
-	private Set<User> participants;
-
-	// private String docType;
-	// private String notes;
 
 	public Long getId() {
 		return id;
@@ -109,6 +115,22 @@ public class Conference {
 
 	public void setProgramSections(Set<ProgramSection> programSections) {
 		this.programSections = programSections;
+	}
+
+	public Set<Article> getArticles() {
+		return articles;
+	}
+
+	public void setArticles(Set<Article> articles) {
+		this.articles = articles;
+	}
+
+	public Set<Service> getServices() {
+		return services;
+	}
+
+	public void setServices(Set<Service> services) {
+		this.services = services;
 	}
 
 }

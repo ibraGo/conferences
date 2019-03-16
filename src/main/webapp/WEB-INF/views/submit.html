@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout}">
+<head>
+<title>Conferences - Welcome</title>
+<link
+	th:href="@{/resources/css/timeline.css}"
+	rel="stylesheet" type="text/css" />
+</head>
+<body>
+	<div layout:fragment="content">
+
+		<form class="form-horizontal" enctype="multipart/form-data"  th:object="${article}"
+			th:action="@{/conf-submit}" method="post">
+			<div class="form-group">
+				<div class="col-sm-10">
+					<input type="hidden" class="form-control" th:field="*{id}" />
+				</div>
+			</div>
+			<input type="hidden" class="form-control" th:field="*{conference.id}" />
+			
+			<div class="form-group">
+				<label class="col-sm-2 control-label">Title:</label>
+				<div class="col-sm-10">
+					<input type="text" class="form-control" th:field="*{title}" />
+					<p th:if="${#fields.hasErrors('title')}" class="label label-danger" th:errors="*{title}">Name Error</p>
+				</div>
+			</div>
+            <div class="form-group">
+            	<label class="col-sm-2 control-label">Authors:</label>
+            	<div class="col-sm-10">
+					<select id="hobbies" th:field="*{authors}" size="10" multiple="multiple">
+						<option th:each="author : ${allAuthors}"
+								th:value="${{author.id}}"
+								th:text="${author.email}">
+							user@gmail.com
+						</option>
+					</select>
+					<p th:if="${#fields.hasErrors('authors')}" class="label label-danger" th:errors="*{authors}">Name Error</p>
+				</div>
+            	
+            </div>
+            
+            <div class="form-group">
+            	<label class="col-sm-2 control-label">Professions:</label>
+            	<div class="col-sm-10">
+					<select id="hobbies" th:field="*{professions}" size="10" multiple="multiple">
+						<option th:each="profession : ${allProfessions}"
+								th:value="${{profession.id}}"
+								th:text="${profession.label}">
+							BI
+						</option>
+					</select>
+					<p th:if="${#fields.hasErrors('professions')}" class="label label-danger" th:errors="*{professions}">Name Error</p>
+				</div>
+            	
+            </div>
+            
+            <div class="form-group m-form__group">
+				<label for="exampleTextarea">
+					Abstract
+				</label>
+				<textarea class="form-control m-input" th:field="*{articleAbstract}" id="exampleTextarea" rows="3"></textarea>
+			</div>
+
+			<div class="form-group">
+				<div class="col-sm-2">
+					<input type="file" name="file"  /> <br/>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<div class="col-sm-2">
+					<button type="submit" class="btn btn-primary">Save</button>
+				</div>
+			</div>
+
+		</form>
+		
+	</div>
+</body>
+</html>

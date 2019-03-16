@@ -11,48 +11,37 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.bimmh.conferences.model.Conference;
 import com.bimmh.conferences.model.ProgramSection;
-import com.bimmh.conferences.repository.ArticleRepository;
-import com.bimmh.conferences.repository.ConferenceRepository;
-import com.bimmh.conferences.repository.ProgramSectionRepository;
+import com.bimmh.conferences.service.ArticleService;
+import com.bimmh.conferences.service.ConferenceService;
+import com.bimmh.conferences.service.ProgramSectionService;
 
 @Controller
 public class PublicController {
 
 	@Autowired
-	private ConferenceRepository conferenceRepository;
+	private ConferenceService conferenceService;
 
 	@Autowired
-	private ProgramSectionRepository programSectionRepository;
+	private ProgramSectionService programSectionService;
 
 	@Autowired
-	private ArticleRepository articleRepository;
+	private ArticleService articleService;
 
 	@RequestMapping(path = { "/", "/index" })
 	public String index(Model model) {
-		model.addAttribute("conferences",
-				conferenceRepository.findByStartDateGreaterThanOrderByStartDateAsc(new Date()));
+		model.addAttribute("conferences", conferenceService.currentConferences(new Date()));
 
-		model.addAttribute("articles", articleRepository.findAll());
+		model.addAttribute("articles", articleService.getAll());
 
 		return "index.html";
 	}
 
 	@RequestMapping(path = "/scheduler/{conferenceId}")
 	public String schudlerConference(@PathVariable(value = "conferenceId") Long id, Model model) {
-		Conference conference = conferenceRepository.findOne(id);
-		Set<ProgramSection> programSections = programSectionRepository.findByConference(conference);
+		Conference conference = conferenceService.getByID(id);
+		Set<ProgramSection> programSections = programSectionService.getByConference(conference);
 		model.addAttribute("programSections", programSections);
 		model.addAttribute("conference", conference);
-
-		return "scheduler.html";
-	}
-
-	@RequestMapping(path = "/submit/{conferenceId}")
-	public String submitToConference(@PathVariable(value = "conferenceId") Long id, Model model) {
-//		Conference conference = conferenceRepository.findOne(id);
-//		Set<ProgramSection> programSections = programSectionRepository.findByConference(id);
-//		model.addAttribute("programSections", programSections);
-//		model.addAttribute("conference", conference);
 
 		return "scheduler.html";
 	}
