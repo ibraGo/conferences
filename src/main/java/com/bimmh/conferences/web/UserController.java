@@ -11,12 +11,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.bimmh.conferences.model.User;
+import com.bimmh.conferences.repository.RoleRepository;
 import com.bimmh.conferences.service.SecurityService;
 import com.bimmh.conferences.service.UserService;
 import com.bimmh.conferences.validator.UserValidator;
 
 @Controller
 public class UserController {
+
+	@Autowired
+	private RoleRepository roleRepository;
+
 	@Autowired
 	private UserService userService;
 
@@ -40,6 +45,8 @@ public class UserController {
 		if (bindingResult.hasErrors()) {
 			return "registration";
 		}
+
+		userForm.setRole(roleRepository.findByName("ROLE_AUTHOR"));
 
 		userService.save(userForm);
 
