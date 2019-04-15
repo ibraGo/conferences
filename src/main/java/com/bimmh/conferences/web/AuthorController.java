@@ -1,6 +1,7 @@
 package com.bimmh.conferences.web;
 
 import java.io.IOException;
+import java.security.Principal;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -27,6 +28,7 @@ import com.bimmh.conferences.service.AuthorService;
 import com.bimmh.conferences.service.ConferenceService;
 import com.bimmh.conferences.service.FileUpload;
 import com.bimmh.conferences.service.ProfessionService;
+import com.bimmh.conferences.service.UserService;
 
 @Controller
 @Secured(value = "ROLE_AUTHOR")
@@ -45,6 +47,9 @@ public class AuthorController {
 	private ArticleService articleService;
 
 	@Autowired
+	private UserService userService;
+
+	@Autowired
 	FileUpload fileUploadService;
 
 	@RequestMapping(path = "/conf-submit", method = RequestMethod.POST)
@@ -61,13 +66,17 @@ public class AuthorController {
 	}
 
 	@RequestMapping(path = "/submit/{conferenceId}")
-	public String submitToConferenceView(@PathVariable(value = "conferenceId") Long id, Model model) {
+	public String submitToConferenceView(@PathVariable(value = "conferenceId") Long id, Model model,
+			Principal principal) {
+		User currentUser = userService.findByUsername(principal.getName());
 		Conference conference = conferenceService.getByID(id);
 		List<Profession> professions = professionService.getAll();
 		List<User> authors = authorService.getAll();
+		authors.remove(currentUser);
 
 		Article article = new Article();
 		article.setConference(conference);
+		article.setPrincipalAuthor(currentUser);
 		// add current User
 		model.addAttribute("article", article);
 		model.addAttribute("allProfessions", professions);

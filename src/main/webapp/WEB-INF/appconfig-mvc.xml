@@ -8,7 +8,7 @@
 	http://www.springframework.org/schema/context
 	http://www.springframework.org/schema/context/spring-context.xsd">
 
-	<mvc:annotation-driven />
+	<mvc:annotation-driven conversion-service="conversionService" />
 
 	<mvc:resources mapping="/resources/**"
 		location="/resources/" />
@@ -77,6 +77,20 @@
 		<property name="suffix" value=".jsp" />
 		<property name="order" value="2" />
 	</bean>
-
+	
+	<!-- 	formatters  -->
+	<bean id="userFormatter" class="com.bimmh.conferences.web.UserFormatter"></bean>
+	<bean id="professionFormatter" class="com.bimmh.conferences.web.ProfessionFormatter"></bean>
+	
+	<bean id="conversionService"
+		class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
+       
+       <property name="formatters">
+            <set>
+                <ref bean="userFormatter" />
+                <ref bean="professionFormatter" />
+            </set>
+        </property>
+	</bean>
 
 </beans>

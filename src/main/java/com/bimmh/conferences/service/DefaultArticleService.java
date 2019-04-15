@@ -29,4 +29,12 @@ public class DefaultArticleService implements ArticleService {
 		articleRepository.save(article);
 	}
 
+	/**
+	 * list of articles under 3 reviews
+	 */
+	@Override
+	public List<Article> getNotReviewed() {
+		return articleRepository.findArticleForReviewByProfessions();
+	}
+
 }

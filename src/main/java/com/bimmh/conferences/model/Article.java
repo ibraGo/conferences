@@ -9,9 +9,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedAttributeNode;
+import javax.persistence.NamedEntityGraph;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+@NamedEntityGraph(name = "Article.professions", attributeNodes = @NamedAttributeNode("professions"))
 @Entity
 @Table(name = "articles")
 public class Article {
@@ -26,6 +29,9 @@ public class Article {
 
 	@ManyToMany
 	private Set<Profession> professions;
+
+	@ManyToOne
+	private User principalAuthor;
 
 	@ManyToMany
 	private Set<User> authors;
@@ -98,6 +104,14 @@ public class Article {
 
 	public void setArticleAbstract(String articleAbstract) {
 		this.articleAbstract = articleAbstract;
+	}
+
+	public User getPrincipalAuthor() {
+		return principalAuthor;
+	}
+
+	public void setPrincipalAuthor(User principalAuthor) {
+		this.principalAuthor = principalAuthor;
 	}
 
 }

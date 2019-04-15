@@ -12,6 +12,7 @@
     <http use-expressions="true">
         <csrf disabled="true"/>
         <intercept-url pattern="/admin/**" access="hasRole('ROLE_ADMIN')"/>
+        <intercept-url pattern="/reviews/**" access="hasRole('ROLE_REVIEWER')"/>
         <form-login login-page="/login" default-target-url="/authcomplete" authentication-failure-url="/login?error" username-parameter="username" password-parameter="password"/>
         <logout logout-success-url="/login?logout" />
     </http>

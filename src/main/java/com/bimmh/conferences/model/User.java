@@ -2,6 +2,7 @@ package com.bimmh.conferences.model;
 
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -23,6 +24,8 @@ public class User {
 	private String firstName;
 	private String lastName;
 	private String username;
+
+	@Column(unique = true)
 	private String email;
 	private String password;
 
@@ -138,6 +141,11 @@ public class User {
 
 	public void setPresentations(List<Presentation> presentations) {
 		this.presentations = presentations;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		return ((User) obj).email.equals(this.email);
 	}
 
 }

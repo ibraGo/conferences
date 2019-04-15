@@ -74,7 +74,9 @@ public class UserController {
 	@RequestMapping(value = "/authcomplete", method = RequestMethod.GET)
 	public String authcomplete(Model model, HttpServletRequest request) {
 		if (request.isUserInRole("ROLE_ADMIN")) {
-			return "redirect:/admin";
+			return "redirect:/admin/";
+		} else if (request.isUserInRole("ROLE_REVIEWER")) {
+			return "redirect:/reviews/";
 		} else {
 			return "redirect:/welcome";
 		}

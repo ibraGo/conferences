@@ -10,5 +10,7 @@ public interface ArticleService {
 
 	List<Article> getAll();
 
+	List<Article> getNotReviewed();
+
 	void save(Article article);
 }

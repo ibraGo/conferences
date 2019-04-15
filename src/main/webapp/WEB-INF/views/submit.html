@@ -19,6 +19,7 @@
 				</div>
 			</div>
 			<input type="hidden" class="form-control" th:field="*{conference.id}" />
+			<input type="hidden" class="form-control" th:field="*{principalAuthor.id}" />
 			
 			<div class="form-group">
 				<label class="col-sm-2 control-label">Title:</label>
@@ -30,9 +31,10 @@
             <div class="form-group">
             	<label class="col-sm-2 control-label">Authors:</label>
             	<div class="col-sm-10">
-					<select id="hobbies" th:field="*{authors}" size="10" multiple="multiple">
+					<select id="authors" th:field="*{authors}" size="10" multiple="multiple">
 						<option th:each="author : ${allAuthors}"
-								th:value="${{author.id}}"
+								th:field="*{authors}"
+								th:value="${{author}}"
 								th:text="${author.email}">
 							user@gmail.com
 						</option>
@@ -45,9 +47,9 @@
             <div class="form-group">
             	<label class="col-sm-2 control-label">Professions:</label>
             	<div class="col-sm-10">
-					<select id="hobbies" th:field="*{professions}" size="10" multiple="multiple">
+					<select id="professions" th:field="*{professions}" size="10" multiple="multiple">
 						<option th:each="profession : ${allProfessions}"
-								th:value="${{profession.id}}"
+								th:value="${{profession}}"
 								th:text="${profession.label}">
 							BI
 						</option>

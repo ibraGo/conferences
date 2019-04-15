@@ -1,7 +1,5 @@
 INSERT INTO conferences (id, durationdays, endsubmission, name, startdate, startsubmission) VALUES (1, 3, '2019-03-26', 'conference', '2019-04-03', '2019-03-14');
 
-INSERT INTO services (id, label) VALUES (5, 'Informatique');
-
 INSERT INTO roles (id, name) VALUES (1, 'ROLE_USER');
 INSERT INTO roles (id, name) VALUES (2, 'ROLE_ADMIN');
 INSERT INTO roles (id, name) VALUES (3, 'ROLE_REVIEWER');
@@ -9,7 +7,6 @@ INSERT INTO roles (id, name) VALUES (4, 'ROLE_AUTHOR');
 
 
 INSERT INTO services (id, description, label, prix, conference_id) VALUES (4, 'service - description', 'service - label', 119.989998, 1);
-
 
 INSERT INTO users (id, email, firstname, lastname, password, username, role_id) VALUES (1, 'admin@mail.com', 'admin', 'bimmh', '$2a$11$M5Me5bEOi/1J1y4MYGWKouMdABYrh7lISht.fx2Mwth3XqDgQmPG6', 'admin-bimmh', 2);
 
