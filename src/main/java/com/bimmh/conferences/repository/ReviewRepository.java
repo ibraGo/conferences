@@ -11,6 +11,4 @@ import com.bimmh.conferences.model.User;
 public interface ReviewRepository extends JpaRepository<Review, Long> {
 
 	List<Review> findByArticleAndReviewer(Article article, User reviewer);
-
-	List<Review> findByArticleAndReviewer(Article article);
 }
