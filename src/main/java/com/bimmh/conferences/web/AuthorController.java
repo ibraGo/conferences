@@ -62,7 +62,7 @@ public class AuthorController {
 		article.setFileName(uploadArticleDoc(file));
 
 		articleService.save(article);
-		return "redirect:/author";
+		return "redirect:/";
 	}
 
 	@RequestMapping(path = "/submit/{conferenceId}")

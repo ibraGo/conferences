@@ -52,7 +52,7 @@ public class UserController {
 
 		securityService.autologin(userForm.getUsername(), userForm.getPasswordConfirm());
 
-		return "redirect:/welcome";
+		return "redirect:/";
 	}
 
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
@@ -78,7 +78,7 @@ public class UserController {
 		} else if (request.isUserInRole("ROLE_REVIEWER")) {
 			return "redirect:/reviews/";
 		} else {
-			return "redirect:/welcome";
+			return "redirect:/";
 		}
 	}
 }
